@@ -399,7 +399,7 @@ class ElementWalker(object):
         rel = element.attrib.get('rel', '')
         stylesheet = 'stylesheet' in rel
         icon = 'icon' in rel
-        inline = stylesheet or icon
+        inline = any((stylesheet, icon, 'manifest' in rel, 'preload' in rel, 'prefetch' in rel))
 
         if stylesheet:
             link_type = LinkType.css
